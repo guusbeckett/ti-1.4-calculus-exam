@@ -23,7 +23,7 @@ def GetStandardFunctions(x):
     return fs
 
 def GetStandardDerivableFunction(x):
-    return random.choice(GetStandardFunctions(x)[0])
+    return random.choice(GetStandardFunctions(x))[0]
 
 def GetChainOfStandardDerivableFunctions(x):
     return GetStandardDerivableFunction(GetStandardDerivableFunction(x))
