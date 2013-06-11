@@ -4,7 +4,7 @@ def GetStandardFunction(x):
     c = str(random.randint(2, 10))
     
     functions = [
-        c,
+        #c,
         x + '^{' + c + '}',
         '\\frac{1}{' + x + '}',
         'e^{' + c + x + '}',

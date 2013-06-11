@@ -12,9 +12,6 @@ import integrals
 
 app = Flask(__name__)
 
-def get_random_number():
-    return random.choice(['-', '']) + str(random.randint(2, 10))
-
 def generate_opgave1():
     # a)
     fraction = functions.GetFraction()
@@ -78,10 +75,26 @@ def generate_opgave2():
 
 def generate_opgave3():
     # should probably check if people can work with exponents here...
-    f = integrals.Wrap(integrals.GetStandardFunction('x'))
-    g = integrals.Wrap(integrals.GetStandardFunction(derivates.GetStandardDerivableFunction('x')))
-    #h = integrals.GetStandardDerivableFunction('x') + derivates.GetStandardDerivableFunction('x')
-    return [f, g]
+    a = integrals.Wrap(integrals.GetStandardFunction('x'))
+    b = integrals.Wrap(integrals.GetStandardFunction(derivates.GetStandardDerivableFunction('x')))
+    
+    # f(x)*g'(x) moet een functie zijn met een standaardintegraal
+    
+    # Pre-conditie: f'(x) heeft een standaardintegraal
+    # Hoe blijft deze in stand?
+    # a) Door g(x) te laten differentieren naar een constante.
+    # of
+    # b) Door f'(x) te laten integreren naar ax^n,
+    #    verder g(x) te laten differentieren naar ax^q, zodanig dat:
+    #    f(x) * g(x) = ax^(n+q)
+    # alleen a) is uitgewerkt:
+    g = functions.GetNumberOrFraction() + 'x'
+    f_accent = integrals.GetStandardFunction('x')
+    l = [g, f_accent]
+    random.shuffle(l)
+    c = integrals.Wrap(l[0] + l[1])
+    
+    return [a, b, c]
 
 def generate_opgave4():
     return []
