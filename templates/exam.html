@@ -1,0 +1,34 @@
+<!doctype html>
+<style>body { font-family: Verdana; font-size: 125%; }</style>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+<h1>Calculus (seed {{ seed }})</h1>
+<h2>Opgavenblad</h2>
+<h3>Opgave 1: [7, 7, 7, 7]</h3>
+<p>Bepaal de eerste afgeleide van de volgende functies:</p>
+<ol type="a">
+	{% for entry in opgave1 %}
+	<li>$$f(x) = {{ entry }}$$</li>
+	{% endfor %}
+</ol>
+
+<h3>Opgave 2: [22]</h3>
+<p>Bepaal aard en co&ouml;rdinaten van de extreme waarden van de functie:</p>
+$$f(x) = {{ opgave2 }}$$
+<p>Motiveer je antwoord met een volledige berekening.</p>
+
+<h3>Opgave 3: [7, 7, 7, 7]:</h3>
+<p>Bepaal primitieven voor de volgende functies:</p>
+<ol type="a">
+	{% for entry in opgave3 %}
+	<li>$$f(x) = {{ entry }}$$</li>
+	{% endfor %}
+</ol>
+
+<h3>Opgave 4: [22]</h3>
+<p>Bereken de oppervlakte van het vlakdeel dat wordt ingesloten door de grafieken van de functies:</p>
+{% for entry in opgave4 %}
+$${{ entry }}$$
+{% endfor %}
+
+<p>Motiveer uw antwoord aan de hand van een volledige berekening!</p>
