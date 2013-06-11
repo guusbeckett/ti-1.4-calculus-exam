@@ -6,7 +6,8 @@ class Function():
         self.tex = ''
     
     def Add(self, tex):
-        self.tex += ('+' if (self.tex != '' and len(tex) > 0 and tex[0] != '-') else '') + tex
+        if tex != '0':
+            self.tex += ('+' if (self.tex != '' and len(tex) > 0 and tex[0] != '-') else '') + tex
         
     def Get(self):
         return self.tex
@@ -19,6 +20,11 @@ def Format_axN(a, n):
             return 'x'
         else:
             return 'x^{' + str(n) + '}'
+    elif a == -1:
+        if n == 1:
+            return '-x'
+        else:
+            return '-x^{' + str(n) + '}'  
     else:
         if n == 1:
             return str(a) + 'x'

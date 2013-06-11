@@ -103,7 +103,51 @@ def generate_opgave3():
     return [a, b, c, d]
 
 def generate_opgave4():
-    return []
+    # zoek een f(x) en g(x), zodanig dat f(x) - g(x) = 0
+    # een discriminant heeft die > 0 en een kwadraat is
+    
+    a = 2
+    c = random.randint(-10, 10)
+     
+    while True:
+        for q in range(1, 100): # D > 0
+            val = q**2 + 4*a*c
+             
+            if val >= 0:
+                b = math.sqrt(val) 
+                 
+                if b == int(b):
+                    b = int(b)
+                     
+                    if b > 0:
+                        bf = b - random.randint(0, b)
+                    else:
+                        bf = b + random.randint(0, -b)
+                        
+                    if c > 0:
+                        cf = c - random.randint(0, c)
+                    else:
+                        cf = c + random.randint(0, -c)
+                        
+                    bg = b - bf
+                    cg = c - cf
+                    
+                    f = Function()
+                    f.Add(functions.Format_axN(1, 2))
+                    f.Add(functions.Format_axN(bf, 1))
+                    f.Add(str(cf))
+                    
+                    g = Function()
+                    g.Add(functions.Format_axN(-1, 2))
+                    g.Add(functions.Format_axN(-bg, 1))
+                    g.Add(str(-cg))
+                    
+                    funcs = [f.Get(), g.Get()]
+                    random.shuffle(funcs)
+                    
+                    return ['f(x) = ' + funcs[0], 'g(x) = ' + funcs[1]]
+         
+        c += 1
 
 @app.route("/")
 def random_exam():
