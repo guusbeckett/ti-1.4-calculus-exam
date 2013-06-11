@@ -4,8 +4,10 @@ import functions
 def GetStandardFunctions(x):
     c = str(random.randint(2, 10))
 
+    x = (x if x == 'x' else ('(' + x + ')'))
+
     fs = [
-        ('{' + (x if x == 'x' else ('(' + x + ')')) + '}' + '^{' + c + '}', functions.Format_axN(c, int(c)-1)),
+        ('{' + x + '}' + '^{' + c + '}', functions.Format_axN(c, int(c)-1)),
         ('e^{' + x + '}', 'e^{' + x + '}'),
         ('{' + c + '}^{' + x + '}', '\\ln(' + c + ')'),
         ('\\ln({' + x + '})', '\\frac{1}{' + x + '}'),

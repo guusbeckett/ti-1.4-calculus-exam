@@ -3,6 +3,8 @@ import random
 def GetStandardFunction(x):
     c = str(random.randint(2, 10))
     
+    x = (x if x == 'x' else ('(' + x + ')'))
+    
     functions = [
         #c,
         x + '^{' + c + '}',
@@ -10,9 +12,9 @@ def GetStandardFunction(x):
         'e^{' + c + x + '}',
         c + '^{' + x + '}',
         '\\ln(' + c + x + ')',
-        '\\sin(' + c + ' \\times ' + x + ')',
-        '\\cos(' + c + ' \\times ' + x + ')',
-        '\\tan(' + c + ' \\times ' + x + ')',
+        '\\sin(' + c + x + ')',
+        '\\cos(' + c + x + ')',
+        '\\tan(' + c + x + ')',
         #'\\frac{1}{\\cos^2(' + c + x + ')}',
     ]
     
