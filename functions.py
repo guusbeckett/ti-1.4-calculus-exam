@@ -47,7 +47,7 @@ def GetNumberOrFraction():
     return random.choice([str(random.randint(2, 10)), FormatFraction(GetFraction())])
     
 def Get_axN():
-    return Format_axN(random.randint(1, 10), GetNumberOrFraction())
+    return Format_axN(random.choice([-random.randint(1, 10), random.randint(1, 10)]), GetNumberOrFraction())
 
 def Get_axN_bx_c():
     f = Function()
