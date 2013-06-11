@@ -1,6 +1,6 @@
 import random
 
-def get_random_function(x):
+def GetStandardFunction(x):
     c = str(random.randint(2, 10))
     
     functions = [
@@ -17,3 +17,6 @@ def get_random_function(x):
     ]
     
     return random.choice(functions)
+
+def Wrap(s):
+    return '\\int ' + s + ' \\mathrm{d}x'

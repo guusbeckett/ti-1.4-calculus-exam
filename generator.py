@@ -1,88 +1,41 @@
 from flask import Flask
 from flask import render_template
 from time import time
-from fractions import Fraction
+
 import random
 import math
+
+import functions
+from functions import Function
 import derivates
 import integrals
+
 app = Flask(__name__)
-
-class TFunction():
-    def __init__(self):
-        self.tex = ''
-    
-    def Add(self, tex):
-        self.tex += ('+' if (self.tex != '' and tex[0] != '-') else '') + tex
-        
-    def Get(self):
-        return self.tex
-
-class TFraction(Fraction):
-    def __init__(self, *args):
-        super(TFraction, self).__init__(*args)
-    
-    def Get(self):
-        if self.numerator == self.denominator:
-            return '1'
-        elif self.numerator == 0:
-            return '0'
-        elif self.denominator == 1:
-            return str(self.numerator)
-        else:
-            return '\\frac{' + str(self.numerator) + '}{' + str(self.denominator) + '}' 
-
-def fmt(a, n):
-    if a == 0:
-        return ''
-    elif a == 1:
-        if n == 1:
-            return 'x'
-        else:
-            return 'x^{' + str(n) + '}'
-    else:
-        if n == 1:
-            return str(a) + 'x'
-        else:
-            return str(a) + 'x^{' + str(n) + '}'
-
-def get_random_fraction():
-    n = d = random.randint(2, 10)
-    f = TFraction(n, d)
-    while f.numerator == f.denominator:
-        n = random.randint(2, 10)
-        f = TFraction(n, d)
-    return f
 
 def get_random_number():
     return random.choice(['-', '']) + str(random.randint(2, 10))
 
-def get_random_number_or_fraction():
-    return random.choice([get_random_number(), get_random_fraction().Get()])
-
-def get_random_ax_n():
-    return fmt(get_random_number(), get_random_number_or_fraction())
-
 def generate_opgave1():
     # a)
-    fraction = get_random_fraction()
+    fraction = functions.GetFraction()
     
-    f = TFunction()
-    f.Add(fmt(fraction.Get(), fraction.denominator))
-    f.Add(get_random_ax_n())
-    f.Add(get_random_number_or_fraction() + derivates.get_random_function('x'))
+    f = Function()
+    f.Add(functions.Format_axN(functions.FormatFraction(fraction), fraction.denominator))
+    f.Add(functions.Get_axN())
+    f.Add(derivates.GetStandardDerivableFunction('x'))
     
     # b)
-    g = TFunction()
-    g.Add(get_random_number_or_fraction() + derivates.get_random_product('x'))
+    g = Function()
+    p1 = random.choice(['(' + functions.Get_axN_bx_c() + ')', derivates.GetStandardDerivableFunction('x')])
+    g.Add(p1 + derivates.GetStandardDerivableFunction('x'))
     
     # c)
-    h = TFunction()
-    h.Add(get_random_number_or_fraction() + derivates.get_random_chain('x'))
+    h = Function()
+    h.Add(functions.GetNumberOrFraction() + derivates.GetChainOfStandardDerivableFunctions('x'))
 
     # d)
-    i = TFunction()
-    i.Add(derivates.get_random_quotient('x + ' + str(random.randint(1, 10))))
+    i = Function()
+    i.Add(derivates.GetQuotientOfStandardDerivableFunctions('x + ' + str(random.randint(1, 10))))
     
     return [f.Get(), g.Get(), h.Get(), i.Get()]
 
@@ -112,10 +65,10 @@ def generate_opgave2():
                         b /= 2
                         c /= 1
                         
-                        f = TFunction()
-                        f.Add(fmt(a, 3))
-                        f.Add(fmt(b, 2))
-                        f.Add(fmt(c, 1))
+                        f = Function()
+                        f.Add(functions.Format_axN(a, 3))
+                        f.Add(functions.Format_axN(b, 2))
+                        f.Add(functions.Format_axN(c, 1))
                         f.Add(str(random.randint(1, 10)))
                               
                         return f.Get()
@@ -124,10 +77,11 @@ def generate_opgave2():
 
 
 def generate_opgave3():
-    f = integrals.get_random_function('x')
-    g = integrals.get_random_function(derivates.get_random_function('x'))
-    h = integrals.get_random_function('x') + derivates.get_random_function('x')
-    return ['\\int ' + f + ' \\mathrm{d}x', '\\int ' + g + ' \\mathrm{d}x', '\\int ' + h + ' \\mathrm{d}x']
+    # should probably check if people can work with exponents here...
+    f = integrals.Wrap(integrals.GetStandardFunction('x'))
+    g = integrals.Wrap(integrals.GetStandardFunction(derivates.GetStandardDerivableFunction('x')))
+    #h = integrals.GetStandardDerivableFunction('x') + derivates.GetStandardDerivableFunction('x')
+    return [f, g]
 
 def generate_opgave4():
     return []
