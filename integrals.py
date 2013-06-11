@@ -10,9 +10,9 @@ def GetStandardFunction(x):
         'e^{' + c + x + '}',
         c + '^{' + x + '}',
         '\\ln(' + c + x + ')',
-        '\\sin(' + c + x + ')',
-        '\\cos(' + c + x + ')',
-        '\\tan(' + c + x + ')',
+        '\\sin(' + c + ' \\times ' + x + ')',
+        '\\cos(' + c + ' \\times ' + x + ')',
+        '\\tan(' + c + ' \\times ' + x + ')',
         #'\\frac{1}{\\cos^2(' + c + x + ')}',
     ]
     

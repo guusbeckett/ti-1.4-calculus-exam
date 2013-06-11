@@ -6,7 +6,7 @@ class Function():
         self.tex = ''
     
     def Add(self, tex):
-        self.tex += ('+' if (self.tex != '' and tex[0] != '-') else '') + tex
+        self.tex += ('+' if (self.tex != '' and len(tex) > 0 and tex[0] != '-') else '') + tex
         
     def Get(self):
         return self.tex
