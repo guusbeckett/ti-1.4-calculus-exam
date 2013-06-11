@@ -94,7 +94,12 @@ def generate_opgave3():
     random.shuffle(l)
     c = integrals.Wrap(l[0] + l[1])
     
-    return [a, b, c]
+    # d)
+    funcs = derivates.GetStandardFunctions('x')
+    func = random.choice(funcs)
+    d = integrals.Wrap(func[1] + integrals.GetStandardFunction(func[0]))
+    
+    return [a, b, c, d]
 
 def generate_opgave4():
     return []
