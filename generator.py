@@ -75,7 +75,7 @@ def generate_opgave2():
 
 def generate_opgave3():
     # should probably check if people can work with exponents here...
-    a = integrals.Wrap(integrals.GetStandardFunction('x'))
+    a = integrals.Wrap(functions.Get_axN() + '\\sqrt[' + str(random.randint(2, 10)) + ']{' + functions.Get_axN() + '}')
     b = integrals.Wrap(integrals.GetStandardFunction(derivates.GetStandardDerivableFunction('x')))
     
     # f(x)*g'(x) moet een functie zijn met een standaardintegraal
