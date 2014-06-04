@@ -21,4 +21,4 @@ def GetStandardFunction(x):
     return random.choice(functions)
 
 def Wrap(s):
-    return '\\int ' + s + ' \\mathrm{d}x'
+    return s

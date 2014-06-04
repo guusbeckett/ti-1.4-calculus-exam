@@ -74,10 +74,14 @@ def generate_opgave2():
 
 
 def generate_opgave3():
+    prefix = 0
+    while prefix == 0:
+        prefix = random.randint(-10, 10)
+
     # should probably check if people can work with exponents here...
     value = random.randint(2, 3)
     a = integrals.Wrap(functions.Get_axN() + '\\sqrt[' + str(value) + ']{' + functions.Format_axN(random.randint(1, 5)**value, random.randint(1, 5)) + '}')
-    b = integrals.Wrap(integrals.GetStandardFunction(derivates.GetStandardDerivableFunction('x')))
+    b = integrals.Wrap(integrals.GetStandardFunction(functions.Format_axN(prefix, 1) + '+' + str(random.randint(1,5))))
     
     # f(x)*g'(x) moet een functie zijn met een standaardintegraal
     
@@ -167,4 +171,4 @@ def exam(seed=0):
     return render_template('exam.html', seed=seed, **opgaves)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, host= '0.0.0.0')
